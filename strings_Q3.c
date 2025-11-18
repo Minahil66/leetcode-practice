@@ -1,0 +1,14 @@
+#include<stdio.h>
+#include<string.h>
+int main() {
+    char name[100];
+    char last[100];
+    printf("Enter your first name: ");
+    scanf("%s", &name);
+    printf("Enter your last name: ");
+    scanf(" %s", &last);
+    strcat(name, " "); //jus to as a white space
+    strcat(name, last);
+    printf("Full name: %s ", name);
+    printf("\nNumber of characters:%d", strlen(name)-1);
+}
