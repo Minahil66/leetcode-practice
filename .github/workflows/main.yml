@@ -1,0 +1,44 @@
+# This workflow will create a daily commit to your repository
+name: Daily Contributions
+
+# Controls when the workflow will run
+on:
+  # Run at a specific time every day
+  schedule:
+    # Run at 12:00 UTC every day
+    - cron: '0 12 * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can be run sequentially or in parallel
+jobs:
+  # This job is called "make_contribution"
+  make_contribution:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Make a dummy change to the file
+      - name: Make a change
+        run: echo "Daily contribution at $(date)" >> daily-contribution.md
+
+      # Commit the change
+      - name: Commit the change
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -m "Automated daily contribution"
+
+      # Push the change
+      - name: Push the change
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
