@@ -1,0 +1,25 @@
+bool halvesAreAlike(char* s) {
+    int len=strlen(s);
+     char vowels[10]={'a','e','i','o','u','A','E','I','O','U'};
+    if(len%2!=0){
+        return false;
+    }
+    int halflen=len/2;
+    int v1=0,v2=0;
+    for(int i=0;i<halflen;i++){
+        for(int j=0;j<10;j++){
+        if(s[i]==vowels[j]){
+            v1++;
+        }
+    }
+    }
+    for(int i=halflen;i<len;i++){
+        for(int j=0;j<10;j++){
+        if(s[i]==vowels[j]){
+            v2++;
+        }
+    }
+    }
+    return v1==v2;
+    }
+
